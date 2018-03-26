@@ -10,7 +10,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent intent = new Intent(this, ScrollingActivity.class);
+        Intent intent = new Intent(this, InterfaceActivity.class);
         startActivity(intent);
         finish();
     }
