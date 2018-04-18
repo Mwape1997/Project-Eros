@@ -15,7 +15,8 @@
         android:layout_marginLeft="52dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="138dp"
-        android:text="@ON" />
+        android:text="ON"
+        android:onClick="GPIO1CONTROL"/>
 
     <SeekBar
         android:id="@+id/seekBar"
@@ -36,6 +37,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginEnd="53dp"
         android:layout_marginRight="53dp"
-        android:text="@OFF" />
+        android:text="OFF" />
 
 </RelativeLayout>
