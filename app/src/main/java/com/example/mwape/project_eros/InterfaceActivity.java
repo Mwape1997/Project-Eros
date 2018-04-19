@@ -27,6 +27,8 @@ import java.net.UnknownHostException;
 public class InterfaceActivity extends AppCompatActivity implements ClockFragment.OnFragmentInteractionListener, LED.OnFragmentInteractionListener, MainScreen.OnFragmentInteractionListener {
 
     LED led;
+    ClockFragment clockFragment;
+
     public Boolean D2, D3, D4 = true;      //NodeMCU pins
     public Boolean bSwitch = true;         //switch for turning ON/OFF
 
@@ -154,6 +156,10 @@ public class InterfaceActivity extends AppCompatActivity implements ClockFragmen
 
     public void GPIO1CONTROL (View v){       //button control for corresponding GPIO port
        led.GPIO1CONTROL(v);
+    }
+
+    public void wifi_connection(View v){
+        clockFragment.wifi_connection(v);
     }
 
     public static void wifiSwitch (Context context, boolean SwitchOn) {
