@@ -91,7 +91,7 @@ public class InterfaceActivity extends AppCompatActivity implements ClockFragmen
     public void wifi_connect (View v){
 
 
-        wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
         if(bSwitch == true){        //if the switch is on, then turn on the wifi
 
@@ -128,10 +128,8 @@ public class InterfaceActivity extends AppCompatActivity implements ClockFragmen
 
     }
 
-
-    public void GPIO1CONTROL (View v){       //button control for corresponding GPIO port
-       // led.GPIO1CONTROL(v);
-
+    //protected so that it can be accessed by LED Fragment.
+    protected void GPIOD2(View v){
         if(!D2){            //If GPIO D2 is currently off
 
             D2 = true;                  //turn it on, create new client and erase buffer
@@ -153,9 +151,15 @@ public class InterfaceActivity extends AppCompatActivity implements ClockFragmen
         }
     }
 
-    public static void wifiSwitch (Context context, boolean isTurnToOn) {
-        wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-        wifiManager.setWifiEnabled(isTurnToOn);
+
+    public void GPIO1CONTROL (View v){       //button control for corresponding GPIO port
+       led.GPIO1CONTROL(v);
+    }
+
+    public static void wifiSwitch (Context context, boolean SwitchOn) {
+        wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        assert wifiManager != null;
+        wifiManager.setWifiEnabled(SwitchOn);
     }
 
     //used to send data to esp module
@@ -166,15 +170,15 @@ public class InterfaceActivity extends AppCompatActivity implements ClockFragmen
 
         public void run(){
 
-            InetAddress serverAddr;
+            InetAddress serverAddress;
             DatagramPacket packet;
             DatagramSocket socket;
 
 
             try {
-                serverAddr = InetAddress.getByName(SERVER_ADDRESS);
+                serverAddress = InetAddress.getByName(SERVER_ADDRESS);
                 socket = new DatagramSocket(); //DataGram socket is created
-                packet = new DatagramPacket(buffer, buffer.length, serverAddr, SERVER_PORT);//Data is loaded with information where to send on address and port number
+                packet = new DatagramPacket(buffer, buffer.length, serverAddress, SERVER_PORT);//Data is loaded with information where to send on address and port number
                 socket.send(packet);//Data is send in the form of packets
                 socket.close();//Needs to close the socket before other operation... its a good programming
             } catch (UnknownHostException e) {

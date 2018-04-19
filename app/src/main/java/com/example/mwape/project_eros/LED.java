@@ -94,7 +94,7 @@ public class LED extends Fragment {
     public void GPIO1CONTROL(View v) {
         switch(v.getId()) {
             default: InterfaceActivity interfaceActivity = new InterfaceActivity();
-                interfaceActivity.GPIO1CONTROL(v);
+                interfaceActivity.GPIOD2(v);
                 break;
         }
     }

@@ -91,6 +91,14 @@ public class ClockFragment extends Fragment {
         mListener = null;
     }
 
+    public void wifi_connect(View v) {
+        switch(v.getId()) {
+            default: InterfaceActivity interfaceActivity = new InterfaceActivity();
+                interfaceActivity.wifi_connect(v);
+                break;
+        }
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
