@@ -15,7 +15,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -27,20 +26,20 @@ import java.net.UnknownHostException;
 
 public class InterfaceActivity extends AppCompatActivity implements ClockFragment.OnFragmentInteractionListener, LED.OnFragmentInteractionListener, MainScreen.OnFragmentInteractionListener {
 
-    Boolean D2, D3, D4 = true;      //NodeMCU pins
-    Boolean bSwitch = true;         //switch for turning ON/OFF
+    LED led;
+    public Boolean D2, D3, D4 = true;      //NodeMCU pins
+    public Boolean bSwitch = true;         //switch for turning ON/OFF
 
-    int networkID; //the network id
+    public int networkID; //the network id
 
-    static WifiManager wifiManager;
-    Context context;
-    WifiConfiguration configuration;
-    Client client;
+    public static WifiManager wifiManager;
+    public Context context;
+    public WifiConfiguration configuration;
+    public Client client;
 
-    WifiConfiguration config;               //used for configuring the wifi
     public static String ssid="yourid";    //your network name here
     public static String pass="*****";     //passeword of your network goes here
-    byte[] buffer = new byte[1024];//used to sending information to esp is a form of byte
+    public byte[] buffer = new byte[1024];//used to sending information to esp is a form of byte
 
 
     @Override
@@ -131,9 +130,9 @@ public class InterfaceActivity extends AppCompatActivity implements ClockFragmen
 
 
     public void GPIO1CONTROL (View v){       //button control for corresponding GPIO port
+       // led.GPIO1CONTROL(v);
 
-
-        if(D2 == false){            //If GPIO D2 is currently off
+        if(!D2){            //If GPIO D2 is currently off
 
             D2 = true;                  //turn it on, create new client and erase buffer
             client = new Client();
@@ -152,8 +151,6 @@ public class InterfaceActivity extends AppCompatActivity implements ClockFragmen
             client.run(); //use run() in class client to send data
             Toast.makeText(InterfaceActivity.this, "ON", Toast.LENGTH_SHORT).show();
         }
-
-
     }
 
     public static void wifiSwitch (Context context, boolean isTurnToOn) {

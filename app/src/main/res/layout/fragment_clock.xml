@@ -23,7 +23,7 @@
         android:layout_alignTop="@+id/button2"
         android:layout_marginLeft="48dp"
         android:layout_marginStart="48dp"
-        android:text="@SET" />
+        android:text="SET" />
 
     <Button
         android:id="@+id/button2"
@@ -35,5 +35,5 @@
         android:layout_marginBottom="28dp"
         android:layout_marginEnd="53dp"
         android:layout_marginRight="53dp"
-        android:text="@Reset" />
+        android:text="Reset" />
 </RelativeLayout>

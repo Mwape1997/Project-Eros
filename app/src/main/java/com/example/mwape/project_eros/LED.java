@@ -91,6 +91,16 @@ public class LED extends Fragment {
         mListener = null;
     }
 
+    public void GPIO1CONTROL(View v) {
+        switch(v.getId()) {
+            default: InterfaceActivity interfaceActivity = new InterfaceActivity();
+                interfaceActivity.GPIO1CONTROL(v);
+                break;
+        }
+    }
+
+
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
